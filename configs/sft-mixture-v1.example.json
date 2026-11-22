@@ -1,0 +1,18 @@
+{
+  "seed": 42,
+  "public_train_target": 7000,
+  "public_validation_target": 400,
+  "behavior_ratios": {
+    "selection": 0.3,
+    "feedback": 0.5,
+    "clarification": 0.1,
+    "no_call": 0.1
+  },
+  "source_weights": {
+    "hermes_multi": 4.0,
+    "glaive": 3.0,
+    "toolace": 1.5,
+    "hermes_single": 0.35
+  },
+  "hermes_single_max_fraction": 0.08
+}

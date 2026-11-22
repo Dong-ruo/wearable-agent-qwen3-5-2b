@@ -1,0 +1,15 @@
+{
+  "now": "2026-11-18T09:00:00+08:00",
+  "max_tool_calls": 1000,
+  "state": {
+    "events": [], "reminders": [], "next_event_id": 1, "next_reminder_id": 1,
+    "preferences": {"indoor": false, "max_duration_minutes": 30},
+    "weather": {"杭州|2026-11-19": "rain", "杭州|2026-11-20": "sunny"},
+    "activities": [
+      {"activity_id": "run", "title": "户外跑步", "indoor": false, "duration_minutes": 30},
+      {"activity_id": "walk", "title": "户外散步", "indoor": false, "duration_minutes": 20},
+      {"activity_id": "stretch", "title": "室内拉伸", "indoor": true, "duration_minutes": 20},
+      {"activity_id": "reading", "title": "室内阅读", "indoor": true, "duration_minutes": 30}
+    ]
+  }
+}

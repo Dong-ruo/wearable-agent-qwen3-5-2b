@@ -1,0 +1,12 @@
+{
+  "shared_decoding": {"temperature": 0, "max_tokens": 1024, "thinking": false},
+  "seeds": [42, 123, 2026],
+  "groups": [
+    {"name": "base", "status": "awaiting_model_endpoint"},
+    {"name": "public_sft", "config": "configs/sft.json", "status": "awaiting_public_data_and_gpu"},
+    {"name": "public_plus_custom_sft", "status": "deferred_custom_dataset"},
+    {"name": "grpo_result_only", "config": "configs/grpo.json", "reward_mode": "result_only", "beta": 0.02, "status": "awaiting_external_executable_tasks"},
+    {"name": "grpo_result_process", "config": "configs/grpo.json", "reward_mode": "result_process", "beta": 0.02, "status": "awaiting_external_executable_tasks"},
+    {"name": "grpo_zero_kl", "config": "configs/grpo.json", "reward_mode": "result_process", "beta": 0, "status": "awaiting_external_executable_tasks"}
+  ]
+}

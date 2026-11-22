@@ -1,0 +1,5 @@
+{
+  "profile": "smoke",
+  "seed": 42,
+  "counts": {"train": 40, "val": 12, "test_id": 16, "test_composition": 16, "test_robustness": 16}
+}

@@ -1,0 +1,2 @@
+# Keep benchmark dependencies separate from training/runtime.
+evalscope[bfcl]==1.15.0

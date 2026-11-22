@@ -1,0 +1,6 @@
+# Windows/Pascal stack: basic NF4 forward/backward passed on the local P1000.
+# Full Qwen model memory fit and SFT training remain untested.
+# Install torch first from https://download.pytorch.org/whl/cu118.
+-r train.txt
+torch==2.6.0
+bitsandbytes==0.49.0

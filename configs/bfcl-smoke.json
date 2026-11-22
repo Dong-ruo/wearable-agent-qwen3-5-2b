@@ -1,0 +1,11 @@
+{
+  "model": "Qwen/Qwen3.5-2B",
+  "api_url": "http://127.0.0.1:8000/v1/chat/completions",
+  "datasets": ["bfcl_v3"],
+  "dataset_args": {"bfcl_v3": {
+    "subset_list": ["simple", "multiple", "parallel", "irrelevance", "multi_turn_base", "multi_turn_miss_param", "multi_turn_miss_func"],
+    "extra_params": {"is_fc_model": true, "underscore_to_dot": true}
+  }},
+  "generation_config": {"temperature": 0, "max_tokens": 1024},
+  "limit": 5, "work_dir": "outputs/bfcl-smoke"
+}

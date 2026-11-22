@@ -1,0 +1,22 @@
+{
+  "framework": "trl", "trl_version": "1.18.0", "stage": "grpo",
+  "model_name_or_path": "artifacts/sft/final-merged",
+  "model_revision": null,
+  "episodes_file": "data/external-executable/train.jsonl",
+  "per_turn_max_new_tokens": 256,
+  "reward": {"mode": "result_process", "process_weight": 0.1, "cost_weight": 0.05},
+  "lora": {"r": 16, "alpha": 32, "target_suffixes": ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj", "in_proj_qkv", "in_proj_z", "in_proj_b", "in_proj_a", "out_proj"]},
+  "trainer": {
+    "output_dir": "artifacts/grpo", "bf16": true, "learning_rate": 0.000005,
+    "per_device_train_batch_size": 1, "gradient_accumulation_steps": 4,
+    "num_generations": 4, "generation_batch_size": 4,
+    "max_completion_length": 2048, "max_tool_calling_iterations": 12,
+    "max_steps": 20, "beta": 0.02, "temperature": 0.8,
+    "use_vllm": true, "vllm_mode": "colocate", "vllm_enable_sleep_mode": true,
+    "vllm_gpu_memory_utilization": 0.35, "vllm_max_model_length": 8192,
+    "chat_template_kwargs": {"enable_thinking": false},
+    "gradient_checkpointing": true, "remove_unused_columns": false,
+    "mask_truncated_completions": true, "logging_steps": 1, "save_steps": 10,
+    "save_total_limit": 2, "report_to": "none", "seed": 42
+  }
+}

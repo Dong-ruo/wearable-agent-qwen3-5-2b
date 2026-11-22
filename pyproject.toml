@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "light-task-agent"
+version = "0.1.0"
+description = "Executable query-decide-act-verify assistant with local simulation tools"
+requires-python = ">=3.10"
+dependencies = ["pydantic>=2.7,<3", "tzdata>=2024.1", "jsonschema>=4.21,<5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10"]
+
+[project.scripts]
+lightagent = "lightagent.cli:main"
+wearable-assistant = "wearable_assistant.__main__:main"
+
+[tool.setuptools]
+packages = ["lightagent", "lightagent.integrations", "wearable_assistant", "wearable_tasks", "wearable_tasks.tests"]
+package-dir = {"" = "src", "wearable_tasks" = "wearable_tasks"}
+
+[tool.setuptools.package-data]
+wearable_assistant = ["web.html", "web.js"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+

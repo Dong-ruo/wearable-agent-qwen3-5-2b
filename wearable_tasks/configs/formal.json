@@ -1,0 +1,5 @@
+{
+  "profile": "formal",
+  "seed": 42,
+  "counts": {"train": 2000, "val": 300, "test_id": 200, "test_composition": 200, "test_robustness": 200}
+}

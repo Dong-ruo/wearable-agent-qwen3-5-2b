@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "simple-list",
+      "turns": [{
+        "text": "查询明天的日程。",
+        "expect": {"outcome": "completed", "reads": {"list_events": {"arguments": {"start_time": "2026-11-19T00:00:00+08:00", "end_time": "2026-11-20T00:00:00+08:00"}, "result": {"status": "success", "data": {"events": []}}}}, "final_result": {"events": []}}
+      }]
+    },
+    {
+      "id": "simple-create",
+      "turns": [{
+        "text": "明天18:00安排30分钟户外跑步。",
+        "expect": {"outcome": "completed", "writes": [{"name": "create_event", "arguments": {"activity_id": "run", "start_time": "2026-11-19T18:00:00+08:00", "duration_minutes": 30}}], "objects": {"event_00001": {"event": {"activity_id": "run", "start_time": "2026-11-19T18:00:00+08:00", "duration_minutes": 30}, "reminder": null, "event_count": 1}}, "final_result": {"event_id": "event_00001"}}
+      }]
+    },
+    {
+      "id": "clarify-duration",
+      "turns": [
+        {"text": "明天18:00安排户外跑步，时长请先问我。", "expect": {"outcome": "clarified", "slots": ["duration_minutes"]}},
+        {"text": "持续30分钟。", "expect": {"outcome": "completed", "writes": [{"name": "create_event", "arguments": {"activity_id": "run", "start_time": "2026-11-19T18:00:00+08:00", "duration_minutes": 30}}], "objects": {"event_00001": {"event": {"start_time": "2026-11-19T18:00:00+08:00", "duration_minutes": 30}, "event_count": 1}}, "final_result": {"event_id": "event_00001"}}}
+      ]
+    },
+    {
+      "id": "reminder-after-detour",
+      "turns": [
+        {"text": "明天18:00安排30分钟户外跑步。", "expect": {"outcome": "completed", "writes": [{"name": "create_event", "arguments": {"activity_id": "run", "start_time": "2026-11-19T18:00:00+08:00", "duration_minutes": 30}}], "objects": {"event_00001": {"event": {"activity_id": "run", "duration_minutes": 30}, "event_count": 1}}, "final_result": {"event_id": "event_00001"}}},
+        {"text": "给刚创建的活动设置提前10分钟的提醒。", "expect": {"outcome": "completed", "writes": [{"name": "set_reminder", "arguments": {"event_id": "event_00001", "minutes_before": 10}}], "objects": {"event_00001": {"reminder": {"reminder_id": "reminder_00001", "trigger_time": "2026-11-19T17:50:00+08:00"}}}, "final_result": {"event_id": "event_00001", "reminder_id": "reminder_00001"}}},
+        {"text": "先聊聊如何整理日常记录。", "repeat": 10, "expect": {"outcome": "detour"}},
+        {"text": "把明天18:00的户外跑步改到明天20:00，时长和活动不变。", "expect": {"outcome": "completed", "writes": [{"name": "update_event", "arguments": {"event_id": "event_00001", "start_time": "2026-11-19T20:00:00+08:00"}}], "objects": {"event_00001": {"event": {"start_time": "2026-11-19T20:00:00+08:00", "activity_id": "run", "duration_minutes": 30}, "reminder": {"reminder_id": "reminder_00001", "minutes_before": 10, "trigger_time": "2026-11-19T19:50:00+08:00"}, "event_count": 1}}, "final_result": {"event_id": "event_00001"}}}
+      ]
+    },
+    {
+      "id": "weekly-rule-after-detour",
+      "turns": [
+        {"text": "这周只安排室内活动。", "expect": {"outcome": "completed", "constraints": {"week": {"enabled": true}}}},
+        {"text": "先聊聊如何整理日常记录。", "repeat": 20, "expect": {"outcome": "detour"}},
+        {"text": "明天18:00安排30分钟户外跑步。", "expect": {"outcome": "blocked", "objects": {"event_00001": {"event": null, "event_count": 0}}}},
+        {"text": "取消本周室内活动限制。", "expect": {"outcome": "completed", "constraints": {"week": {"enabled": false}}}},
+        {"text": "明天18:00安排30分钟户外跑步。", "expect": {"outcome": "completed", "writes": [{"name": "create_event", "arguments": {"activity_id": "run", "start_time": "2026-11-19T18:00:00+08:00"}}], "objects": {"event_00001": {"event": {"activity_id": "run", "duration_minutes": 30}, "event_count": 1}}, "final_result": {"event_id": "event_00001"}}}
+      ]
+    }
+  ]
+}

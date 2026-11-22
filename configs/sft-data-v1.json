@@ -1,0 +1,47 @@
+{
+  "seed": 42,
+  "public_validation_fraction": 0.08,
+  "full_max_tokens": 32768,
+  "review_files": [],
+  "public_inputs": [
+    {
+      "source": "hermes_multi",
+      "path": "data/raw/hermes/func-calling.json",
+      "download_manifest": "data/raw/hermes/download-manifest.json",
+      "license": "Apache-2.0",
+      "license_evidence": "data/raw/hermes/README.md YAML license field; upstream revision in download manifest"
+    },
+    {
+      "source": "hermes_single",
+      "path": "data/raw/hermes/func-calling-singleturn.json",
+      "download_manifest": "data/raw/hermes/download-manifest.json",
+      "license": "Apache-2.0",
+      "license_evidence": "data/raw/hermes/README.md YAML license field; upstream revision in download manifest"
+    },
+    {
+      "source": "glaive",
+      "path": "data/raw/hermes/glaive-function-calling-5k.json",
+      "download_manifest": "data/raw/hermes/download-manifest.json",
+      "license": "Apache-2.0",
+      "license_evidence": "Hermes redistributed subset: data/raw/hermes/README.md; original source Glaive retained as provenance, no claim about all Glaive releases"
+    },
+    {
+      "source": "toolace",
+      "path": "data/raw/toolace/data.json",
+      "download_manifest": "data/raw/toolace/download-manifest.json",
+      "license": "Apache-2.0",
+      "license_evidence": "data/raw/toolace/README.md YAML license field; upstream revision in download manifest"
+    }
+  ],
+  "self": {
+    "directory": "data/wearable_tasks/formal",
+    "license": "project-local",
+    "expected_counts": {
+      "train": 2000,
+      "validation": 300,
+      "test_id": 200,
+      "test_composition": 200,
+      "test_robustness": 200
+    }
+  }
+}
